@@ -1,0 +1,631 @@
+; Compiled by GCC
+.text
+	.align 2
+.proc _isspace
+.global _isspace
+_isspace:
+;  Function 'isspace'; 0 bytes of locals, 1 regs to save.
+	sw	-4(r29),r30	; push fp
+	add	r30,r0,r29	; fp = sp
+	sw	-8(r29),r31	; push ret addr
+	subui	r29,r29,#16	; alloc local storage
+	sw	0(r29),r2
+	lb	r2,3(r30)
+	addi	r31,r0,#0
+	andi	r1,r2,#0x00ff
+	seqi	r1,r1,#32
+	bnez	r1,L6
+	nop	; not filled.
+	addi	r1,r2,#-9
+	andi	r1,r1,#0x00ff
+	sleui	r1,r1,#1
+	beqz	r1,L5
+	nop	; not filled.
+L6:
+	addi	r31,r0,#1
+L5:
+	add	r1,r0,r31
+	lw	r2,0(r29)
+	lw	r31,-8(r30)
+	add	r29,r0,r30
+	lw	r30,-4(r30)
+	jr	r31
+	nop
+.endproc _isspace
+	.align 2
+.proc _isxdigit
+.global _isxdigit
+_isxdigit:
+;  Function 'isxdigit'; 0 bytes of locals, 1 regs to save.
+	sw	-4(r29),r30	; push fp
+	add	r30,r0,r29	; fp = sp
+	sw	-8(r29),r31	; push ret addr
+	subui	r29,r29,#16	; alloc local storage
+	sw	0(r29),r2
+	lb	r31,3(r30)
+	addi	r2,r0,#0
+	addi	r1,r31,#-48
+	andi	r1,r1,#0x00ff
+	sleui	r1,r1,#9
+	bnez	r1,L12
+	nop	; not filled.
+	addi	r1,r31,#-97
+	andi	r1,r1,#0x00ff
+	sleui	r1,r1,#5
+	bnez	r1,L12
+	nop	; not filled.
+	andi	r1,r31,#0x00ff
+	snei	r1,r1,#65
+	bnez	r1,L11
+	nop	; not filled.
+L12:
+	addi	r2,r0,#1
+L11:
+	add	r1,r0,r2
+	lw	r2,0(r29)
+	lw	r31,-8(r30)
+	add	r29,r0,r30
+	lw	r30,-4(r30)
+	jr	r31
+	nop
+.endproc _isxdigit
+.data
+	.align 2
+LC0:
+	.ascii "S\000"
+	.align 2
+LC1:
+	.ascii "2O2\000"
+	.align 2
+LC2:
+	.ascii "2C2\000"
+	.align 2
+LC3:
+	.ascii "SO4\000"
+	.align 2
+LC4:
+	.ascii "FATAL ERROR: pid: %d, reaction param size error\n\000"
+	.align 2
+LC5:
+	.ascii "Enter reaction %d, pid = %d\n\000"
+	.align 2
+LC6:
+	.ascii "FATAL ERROR: pid: %d, reaction open mbox error\n\000"
+	.align 2
+LC7:
+	.ascii "reac opend in pid : %d\n\000"
+	.align 2
+LC8:
+	.ascii "FATAL ERROR: pid: %d, reaction 1 (S2 -> S + S) recv S2 mbox error\n\000"
+	.align 2
+LC9:
+	.ascii "FATAL ERROR: pid: %d, reaction 1 (S2 -> S + S) send S mbox error\n\000"
+	.align 2
+LC10:
+	.ascii "MESSAGE: pid %d, reaction 1 (S2 -> S + S) successful\n\000"
+	.align 2
+LC11:
+	.ascii "FATAL ERROR: pid: %d, reaction 2 (4CO -> 2O2 + 2C2) recv 4CO mbox erro"
+	.ascii "r\n\000"
+	.align 2
+LC12:
+	.ascii "FATAL ERROR: pid: %d, reaction 2 (4CO -> 2O2 + 2C2) send 2O2 or 2C2 mb"
+	.ascii "ox error\n\000"
+	.align 2
+LC13:
+	.ascii "MESSAGE: pid %d, reaction 2 (4CO -> 2O2 + 2C2) successful\n\000"
+	.align 2
+LC14:
+	.ascii "FATAL ERROR: pid: %d, reaction 3 (S + 2O2 -> SO4) recv S or 2O2 mbox e"
+	.ascii "rror\n\000"
+	.align 2
+LC15:
+	.ascii "FATAL ERROR: pid: %d, reaction 3 (S + 2O2 -> SO4) send SO4 mbox error\n"
+	.ascii "\000"
+	.align 2
+LC16:
+	.ascii "MESSAGE: pid %d, reaction 3 (S + 2O2 -> SO4) successful\n\000"
+	.align 2
+LC17:
+	.ascii "reac send in pid %d\n\000"
+	.align 2
+LC18:
+	.ascii "FATAL ERROR: pid: %d, reaction close mbox error\n\000"
+	.align 2
+LC19:
+	.ascii "reac closed in pid %d\n\000"
+	.align 2
+LC20:
+	.ascii "FATAL ERROR: pid: %d, reaction sem signal error\n\000"
+.text
+	.align 2
+.proc _main
+.global _main
+_main:
+;  Function 'main'; 96 bytes of locals, 0 regs to save.
+	sw	-4(r29),r30	; push fp
+	add	r30,r0,r29	; fp = sp
+	sw	-8(r29),r31	; push ret addr
+	subui	r29,r29,#104	; alloc local storage
+	lw	r2,(r30)
+	lw	r3,4(r30)
+	jal	___main
+	nop	; not filled.
+	lhi	r1,((LC0)>>16)&0xffff
+	addui	r1,r1,(LC0)&0xffff
+	lb	r8,(r1)
+	sb	-16(r30),r8
+	lb	r1,1(r1)
+	sb	-15(r30),r1
+	lhi	r1,((LC1)>>16)&0xffff
+	addui	r1,r1,(LC1)&0xffff
+	lb	r8,(r1)
+	sb	-24(r30),r8
+	lb	r8,1(r1)
+	sb	-23(r30),r8
+	lb	r8,2(r1)
+	sb	-22(r30),r8
+	lb	r1,3(r1)
+	sb	-21(r30),r1
+	lhi	r1,((LC2)>>16)&0xffff
+	addui	r1,r1,(LC2)&0xffff
+	lb	r8,(r1)
+	sb	-32(r30),r8
+	lb	r8,1(r1)
+	sb	-31(r30),r8
+	lb	r8,2(r1)
+	sb	-30(r30),r8
+	lb	r1,3(r1)
+	sb	-29(r30),r1
+	lhi	r1,((LC3)>>16)&0xffff
+	addui	r1,r1,(LC3)&0xffff
+	lb	r8,(r1)
+	sb	-40(r30),r8
+	lb	r8,1(r1)
+	sb	-39(r30),r8
+	lb	r8,2(r1)
+	sb	-38(r30),r8
+	lb	r1,3(r1)
+	sb	-37(r30),r1
+	jal	_getpid
+	nop	; not filled.
+	add	r5,r0,r1
+	snei	r1,r2,#6
+	beqz	r1,L14
+	nop	; not filled.
+	addi	r29,r29,#-8
+	lhi	r8,((LC4)>>16)&0xffff
+	addui	r8,r8,(LC4)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L14:
+	addi	r29,r29,#-16
+	lw	r8,4(r3)
+	sw	(r29),r8
+	addi	r8,r0,#0
+	sw	4(r29),r8
+	addi	r8,r0,#10
+	sw	8(r29),r8
+	jal	_dstrtol
+	nop	; not filled.
+	add	r6,r0,r1
+	lw	r8,20(r3)
+	sw	(r29),r8
+	addi	r8,r0,#0
+	sw	4(r29),r8
+	addi	r8,r0,#10
+	sw	8(r29),r8
+	jal	_dstrtol
+	nop	; not filled.
+	add	r7,r0,r1
+	lhi	r8,((LC5)>>16)&0xffff
+	addui	r8,r8,(LC5)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r6
+	sw	8(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	addi	r2,r0,#2
+	addi	r29,r29,#16
+	addi	r4,r30,#-56
+	addi	r3,r3,#8
+L18:
+	addi	r29,r29,#-16
+	lw	r8,(r3)
+	sw	(r29),r8
+	addi	r8,r0,#0
+	sw	4(r29),r8
+	addi	r8,r0,#10
+	sw	8(r29),r8
+	jal	_dstrtol
+	nop	; not filled.
+	sw	(r4),r1
+	addi	r29,r29,#16
+	addi	r4,r4,#4
+	addi	r3,r3,#4
+	addi	r2,r2,#1
+	slei	r1,r2,#4
+	bnez	r1,L18
+	nop	; not filled.
+	addi	r4,r0,#1
+	seqi	r1,r6,#1
+	beqz	r1,L20
+	nop	; not filled.
+	addi	r2,r0,#0
+	addi	r3,r30,#-8
+L24:
+	addi	r29,r29,#-8
+	lw	r8,-48(r3)
+	sw	(r29),r8
+	jal	_mbox_open
+	nop	; not filled.
+	addi	r29,r29,#8
+	seqi	r1,r1,#-1
+	bnez	r1,L65
+	nop	; not filled.
+	addi	r3,r3,#4
+	addi	r2,r2,#1
+	slei	r1,r2,#1
+	beqz	r1,L27
+	nop	; not filled.
+	j	L24
+	nop	; not filled.
+L65:
+	addi	r4,r0,#0
+	j	L27
+	nop	; not filled.
+L20:
+	addi	r2,r0,#0
+	addi	r3,r30,#-8
+L31:
+	addi	r29,r29,#-8
+	lw	r8,-48(r3)
+	sw	(r29),r8
+	jal	_mbox_open
+	nop	; not filled.
+	addi	r29,r29,#8
+	seqi	r1,r1,#-1
+	bnez	r1,L65
+	nop	; not filled.
+	addi	r3,r3,#4
+	addi	r2,r2,#1
+	slei	r1,r2,#2
+	bnez	r1,L31
+	nop	; not filled.
+L27:
+	snei	r1,r4,#0
+	bnez	r1,L34
+	nop	; not filled.
+	addi	r29,r29,#-8
+	lhi	r8,((LC6)>>16)&0xffff
+	addui	r8,r8,(LC6)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L34:
+	addi	r29,r29,#-8
+	lhi	r8,((LC7)>>16)&0xffff
+	addui	r8,r8,(LC7)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	addi	r29,r29,#8
+	seqi	r1,r6,#1
+	beqz	r1,L35
+	nop	; not filled.
+	addi	r29,r29,#-16
+	lw	r8,-56(r30)
+	sw	(r29),r8
+	addi	r8,r0,#20
+	sw	4(r29),r8
+	addi	r1,r30,#-80
+	sw	8(r29),r1
+	jal	_mbox_recv
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	beqz	r1,L36
+	nop	; not filled.
+	addi	r29,r29,#-8
+	lhi	r8,((LC8)>>16)&0xffff
+	addui	r8,r8,(LC8)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L36:
+	addi	r29,r29,#-16
+	lw	r8,-52(r30)
+	sw	(r29),r8
+	addi	r8,r0,#2
+	sw	4(r29),r8
+	addi	r2,r30,#-16
+	sw	8(r29),r2
+	jal	_mbox_send
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	bnez	r1,L38
+	nop	; not filled.
+	addi	r29,r29,#-16
+	lw	r8,-52(r30)
+	sw	(r29),r8
+	addi	r8,r0,#2
+	sw	4(r29),r8
+	sw	8(r29),r2
+	jal	_mbox_send
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	beqz	r1,L37
+	nop	; not filled.
+L38:
+	addi	r29,r29,#-8
+	lhi	r8,((LC9)>>16)&0xffff
+	addui	r8,r8,(LC9)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L37:
+	addi	r29,r29,#-8
+	lhi	r8,((LC10)>>16)&0xffff
+	addui	r8,r8,(LC10)&0xffff
+	j	L68
+	nop	; not filled.
+L35:
+	seqi	r1,r6,#2
+	beqz	r1,L40
+	nop	; not filled.
+	addi	r29,r29,#-16
+	lw	r8,-56(r30)
+	sw	(r29),r8
+	addi	r8,r0,#20
+	sw	4(r29),r8
+	addi	r1,r30,#-80
+	sw	8(r29),r1
+	jal	_mbox_recv
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	beqz	r1,L41
+	nop	; not filled.
+	addi	r29,r29,#-8
+	lhi	r8,((LC11)>>16)&0xffff
+	addui	r8,r8,(LC11)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L41:
+	addi	r29,r29,#-16
+	lw	r8,-52(r30)
+	sw	(r29),r8
+	addi	r8,r0,#4
+	sw	4(r29),r8
+	addi	r1,r30,#-24
+	sw	8(r29),r1
+	jal	_mbox_send
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	bnez	r1,L43
+	nop	; not filled.
+	addi	r29,r29,#-16
+	lw	r8,-48(r30)
+	sw	(r29),r8
+	addi	r8,r0,#4
+	sw	4(r29),r8
+	addi	r1,r30,#-32
+	sw	8(r29),r1
+	jal	_mbox_send
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	beqz	r1,L42
+	nop	; not filled.
+L43:
+	addi	r29,r29,#-8
+	lhi	r8,((LC12)>>16)&0xffff
+	addui	r8,r8,(LC12)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L42:
+	addi	r29,r29,#-8
+	lhi	r8,((LC13)>>16)&0xffff
+	addui	r8,r8,(LC13)&0xffff
+	j	L68
+	nop	; not filled.
+L40:
+	addi	r29,r29,#-16
+	lw	r8,-56(r30)
+	sw	(r29),r8
+	addi	r8,r0,#20
+	sw	4(r29),r8
+	addi	r1,r30,#-80
+	sw	8(r29),r1
+	jal	_mbox_recv
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	bnez	r1,L46
+	nop	; not filled.
+	addi	r29,r29,#-16
+	lw	r8,-52(r30)
+	sw	(r29),r8
+	addi	r8,r0,#20
+	sw	4(r29),r8
+	addi	r1,r30,#-104
+	sw	8(r29),r1
+	jal	_mbox_recv
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	beqz	r1,L45
+	nop	; not filled.
+L46:
+	addi	r29,r29,#-8
+	lhi	r8,((LC14)>>16)&0xffff
+	addui	r8,r8,(LC14)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L45:
+	addi	r29,r29,#-16
+	lw	r8,-48(r30)
+	sw	(r29),r8
+	addi	r8,r0,#4
+	sw	4(r29),r8
+	addi	r1,r30,#-40
+	sw	8(r29),r1
+	jal	_mbox_send
+	nop	; not filled.
+	addi	r29,r29,#16
+	seqi	r1,r1,#-1
+	beqz	r1,L47
+	nop	; not filled.
+	addi	r29,r29,#-8
+	lhi	r8,((LC15)>>16)&0xffff
+	addui	r8,r8,(LC15)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L47:
+	addi	r29,r29,#-8
+	lhi	r8,((LC16)>>16)&0xffff
+	addui	r8,r8,(LC16)&0xffff
+L68:
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	addi	r29,r29,#8
+	addi	r29,r29,#-8
+	lhi	r8,((LC17)>>16)&0xffff
+	addui	r8,r8,(LC17)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	addi	r4,r0,#1
+	addi	r29,r29,#8
+	seqi	r1,r6,#1
+	beqz	r1,L48
+	nop	; not filled.
+	addi	r2,r0,#0
+	addi	r3,r30,#-8
+L52:
+	addi	r29,r29,#-8
+	lw	r8,-48(r3)
+	sw	(r29),r8
+	jal	_mbox_close
+	nop	; not filled.
+	addi	r29,r29,#8
+	seqi	r1,r1,#-1
+	bnez	r1,L67
+	nop	; not filled.
+	addi	r3,r3,#4
+	addi	r2,r2,#1
+	slei	r1,r2,#1
+	beqz	r1,L55
+	nop	; not filled.
+	j	L52
+	nop	; not filled.
+L67:
+	addi	r4,r0,#0
+	j	L55
+	nop	; not filled.
+L48:
+	addi	r2,r0,#0
+	addi	r3,r30,#-8
+L59:
+	addi	r29,r29,#-8
+	lw	r8,-48(r3)
+	sw	(r29),r8
+	jal	_mbox_close
+	nop	; not filled.
+	addi	r29,r29,#8
+	seqi	r1,r1,#-1
+	bnez	r1,L67
+	nop	; not filled.
+	addi	r3,r3,#4
+	addi	r2,r2,#1
+	slei	r1,r2,#2
+	bnez	r1,L59
+	nop	; not filled.
+L55:
+	snei	r1,r4,#0
+	bnez	r1,L62
+	nop	; not filled.
+	addi	r29,r29,#-8
+	lhi	r8,((LC18)>>16)&0xffff
+	addui	r8,r8,(LC18)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L62:
+	addi	r29,r29,#-8
+	lhi	r8,((LC19)>>16)&0xffff
+	addui	r8,r8,(LC19)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	sw	(r29),r7
+	jal	_sem_signal
+	nop	; not filled.
+	addi	r29,r29,#8
+	seqi	r1,r1,#-1
+	beqz	r1,L63
+	nop	; not filled.
+	addi	r29,r29,#-8
+	lhi	r8,((LC20)>>16)&0xffff
+	addui	r8,r8,(LC20)&0xffff
+	sw	(r29),r8
+	sw	4(r29),r5
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L63:
+	addi	r1,r0,#0
+	jal	_exit
+	nop
+.endproc _main

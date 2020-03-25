@@ -1,0 +1,2 @@
+work/inject.o: inject.c ../../../include/misc.h \
+ ../../../include/usertraps.h ../include/target.h
